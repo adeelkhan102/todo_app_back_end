@@ -3,15 +3,21 @@ class TodoController < ApplicationController
         
     end 
     
+    def new
+    end 
+    
+    
+    
     def show 
+        
   
         if params[:id]=="1" 
             @task= "A.P English Speech paper"
             
-    end
+        end
        if params[:id]=="2"
            @task= "A.P Environmental Science summer hw"
-     end
+        end
        if params[:id]=="3"
            @task= "A.P U.S History Summer HW"
            
@@ -23,8 +29,18 @@ class TodoController < ApplicationController
         
          if params[:id]=="5"
              @task= "Trig. Packet"
-         end
-          
-         end 
-        
+        end
+   
     end
+    
+    
+    
+    def create
+          t = Todo.new
+          t.description = params['description']
+          t.order = params['order_estimate']
+          t.save
+          redirect_to "/todo/show/#{ t.id }"
+    end
+    
+end
